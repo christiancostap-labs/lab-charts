@@ -26,8 +26,13 @@ jobs:
           helm lint ./charts/apps
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v8
-        with:
-          base: main
-          title: "Update Helm report"
-          body: "PR created by Github Actions."
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_BRANCH: ${{ github.ref_name }}
+          BASE_BRANCH: main
+        run: |
+          gh pr create \
+            --head "$HEAD_BRANCH" \
+            --base "$BASE_BRANCH" \
+            --title "Merge $HEAD_BRANCH into $BASE_BRANCH" \
+            --body "PR created automatically by GitHub Actions."
