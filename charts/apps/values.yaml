@@ -1,0 +1,12 @@
+appName: my-lab-app
+namespace: my-lab-ns
+replicaCount: 1
+
+service:
+  enabled: true
+  port: 8080
+  protocol: TCP
+
+image:
+  repository: christiancostap/lab
+  tag: ccd2d90cccbc

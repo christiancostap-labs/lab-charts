@@ -1,0 +1,17 @@
+{{- if .Values.service.enabled }}
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: {{ include "helper.gatewayName" . }}
+  namespace: {{ .Values.namespace | quote }}
+spec:
+  selector:
+    istio: ingress
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+{{- end }}
