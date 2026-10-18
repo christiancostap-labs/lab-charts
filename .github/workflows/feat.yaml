@@ -41,8 +41,18 @@ jobs:
           HEAD_BRANCH: ${{ github.ref_name }}
           BASE_BRANCH: main
         run: |
-          gh pr create \
-            --head "$HEAD_BRANCH" \
-            --base "$BASE_BRANCH" \
-            --title "Merge $HEAD_BRANCH into $BASE_BRANCH" \
-            --body "PR created automatically by GitHub Actions."
+          if gh pr list \
+            --head "feat/init" \
+            --base "main" \
+            --state "open" \
+            --json number \
+            --jq 'length > 0' | grep -q true; then
+            echo "Pull request already exists. Skipping creation."
+          else
+            echo "Creating pull request..."
+            gh pr create \
+              --head "$HEAD_BRANCH" \
+              --base "$BASE_BRANCH" \
+              --title "Merge $HEAD_BRANCH into $BASE_BRANCH" \
+              --body "PR created automatically by GitHub Actions."
+          fi
