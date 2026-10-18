@@ -1,0 +1,15 @@
+
+{{- if .Values.service.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helper.serviceName" . }}
+  namespace: {{ .Values.namespace | quote }}
+spec:
+  selector:
+    app: {{ .Values.appName | quote }}
+  ports:
+    - protocol: {{ .Values.service.protocol | default "TCP" | quote }}
+      port: {{ .Values.service.port | default 80 }}
+      targetPort: {{ .Values.service.port | default 80 }}
+{{- end }}

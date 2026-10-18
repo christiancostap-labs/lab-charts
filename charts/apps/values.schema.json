@@ -1,0 +1,63 @@
+
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "appName": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        }
+      },
+      "required": ["enabled"]
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "required": ["repository", "tag"]
+    }
+  },
+  "required": ["appName", "namespace", "replicaCount", "service", "image"],
+  "if": {
+    "properties": {
+      "service": {
+        "properties": {
+          "enabled": {
+            "const": true
+          }
+        },
+        "required": ["enabled"]
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "service": {
+        "required": ["port"]
+      }
+    }
+  }
+}
