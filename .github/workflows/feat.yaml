@@ -6,13 +6,18 @@ on:
       - feat/**
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 jobs:
   lint:
     runs-on: arc-runner-set
     steps:
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
+          
       - name: Checkout
         uses: actions/checkout@v6
         with:
