@@ -9,7 +9,7 @@ spec:
     istio: ingress
   servers:
     - port:
-        number: 80
+        number: {{ .Values.service.port | default 80}}
         name: http
         protocol: HTTP
       hosts:
