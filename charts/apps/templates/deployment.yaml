@@ -32,3 +32,5 @@ spec:
               value: "otlp"
             - name: OTEL_SEMCONV_STABILITY_OPT_IN
               value: "http/dup"
+            - name: PORT
+              value: {{ .Values.service.port | quote }}
