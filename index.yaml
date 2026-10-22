@@ -2,6 +2,14 @@ apiVersion: v1
 entries:
   lab:
   - apiVersion: v2
+    created: "2026-10-22T17:58:46.55797563Z"
+    description: A Helm chart for Kubernetes Lab Applications
+    digest: 5f345c1819a5a6f6ca941309e4e7402753452692caaac82612e18480a14c5f18
+    name: lab
+    urls:
+    - https://github.com/christiancostap-labs/lab-charts/releases/download/lab-0.0.3/lab-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     created: "2026-10-19T13:39:40.893132517Z"
     description: A Helm chart for Kubernetes Lab Applications
     digest: 5cd88244c12ccbb010c538b3c033637e73b9eaf5b02453e0f3205cf927f63e13
@@ -17,4 +25,4 @@ entries:
     urls:
     - https://github.com/christiancostap-labs/lab-charts/releases/download/lab-0.0.1/lab-0.0.1.tgz
     version: 0.0.1
-generated: "2026-10-19T13:39:40.893140411Z"
+generated: "2026-10-22T17:58:46.557994666Z"
