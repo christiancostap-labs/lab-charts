@@ -18,6 +18,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gh
 
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Checkout
         uses: actions/checkout@v6
         with:
@@ -29,11 +34,6 @@ jobs:
       - name: Helm Lint
         run: |
           helm lint ./charts/apps
-
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Create Pull Request
         env:
