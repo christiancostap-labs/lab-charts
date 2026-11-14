@@ -16,6 +16,8 @@ spec:
         app: {{ .Values.appName | quote }}
 
     spec:
+      imagePullSecrets:
+        - name: ghcr-creds
       containers:
         - name: app
           image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag | quote }}
